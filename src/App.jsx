@@ -5,7 +5,6 @@ import StockPage from './pages/StockPage'
 import CaissePage from './pages/CaissePage'
 import CRMPage from './pages/CRMPage'
 import NotFound from './pages/NotFound'
-import UserManagement from './pages/UserManagement'
 import EmployeeManagement from './pages/EmployeeManagement'
 import RoleManagement from './pages/RoleManagement'
 
@@ -18,7 +17,6 @@ function App() {
         <Route path="/stocks" element={<StockPage />} />
         <Route path="/caisses" element={<CaissePage />} />
         <Route path="/crm" element={<CRMPage />} />
-        <Route path="/UserManagement" element={<UserManagement />} />
         <Route path="/RoleManagement" element={<RoleManagement />} />
         <Route path="/EmployeeManagement" element={<EmployeeManagement />} />
         <Route path="*" element={<NotFound />} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Users, ShieldCheck, UserCheck, Key, Search, Plus, Settings, MoreHorizontal, ChevronDown, X, Eye, Edit, Trash2, UserPlus, BarChart2, Package, DollarSign, UserCircle, Heart } from 'lucide-react';
+import { Shield, Users, ShieldCheck, UserCheck, Key, Search, Plus, Settings, MoreHorizontal, ChevronDown, X, Eye, Edit, Trash2, UserPlus, BarChart2, Package, DollarSign, UserCircle, Heart, EyeOff } from 'lucide-react';
 
 const RoleManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -7,9 +7,38 @@ const RoleManagement = () => {
   const [roleModalOpen, setRoleModalOpen] = useState(false);
   const [permissionsModalOpen, setPermissionsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [newUserData, setNewUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'Caissière'
+  });
 
   const handleNavigation = (path) => {
     window.location.href = path;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUserData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmitNewUser = (e) => {
+    e.preventDefault();
+    // Logique pour ajouter le nouvel utilisateur
+    console.log('Nouvel utilisateur:', newUserData);
+    // Réinitialiser le formulaire
+    setNewUserData({
+      name: '',
+      email: '',
+      password: '',
+      role: 'Caissière'
+    });
+    setRoleModalOpen(false);
   };
 
   // Définition des rôles simplifiés
@@ -283,7 +312,7 @@ const RoleManagement = () => {
       {roleModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setRoleModalOpen(false)}></div>
-          <div className="relative bg-[#0f1f3a]/85 backdrop-blur-xl border border-[#1a2f4a] rounded-lg w-full max-w-md p-6 shadow-2xl" style={{ animation: 'modalZoom 0.3s ease-out forwards' }}>
+          <div className="relative bg-[#0f1f3a]/85 backdrop-blur-xl border border-[#1a2f4a] rounded-lg w-full max-w-lg max-h-[90vh] overflow-y-auto p-6 shadow-2xl" style={{ animation: 'modalZoom 0.3s ease-out forwards' }}>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-white">Ajouter un nouvel utilisateur</h3>
               <button onClick={() => setRoleModalOpen(false)} className="text-gray-400 hover:text-white transition-colors">
